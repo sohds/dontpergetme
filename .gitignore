@@ -181,4 +181,4 @@ pyrightconfig.json
 
 
 # ChatGPT API (for destination query making)
-Prompting/ChatGPT_api_key.json
+Data/Prompting/ChatGPT_api_key.json
