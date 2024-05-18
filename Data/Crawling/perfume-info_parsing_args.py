@@ -133,9 +133,9 @@ def main(args):
 
     # 기존 CSV 파일에 향수 정보 추가
     try:
-        file_path = 'dataset/used_dataset.csv'
-        # amber ~ chypre 맡았으면 그 파일명으로 변경해주고, 
-        # citrus ~ leather 맡았으면 그 파일명으로 변경 
+        file_path = 'dataset/perfume-info-raw/used_dataset.csv'
+        # amber ~ chypre 맡았으면 파일명(amber_aromatic_chypre)으로 변경해주고, 
+        # citrus ~ leather 맡았으면 파일명(citrus_floral_leather)으로 변경
         # leather은 used_dataset에 바로 넣기
         # 이 세 파일 나중에 전처리 전에 병합할 예정
         file_exists = pd.read_csv(file_path, header=0).shape[0] > 0
