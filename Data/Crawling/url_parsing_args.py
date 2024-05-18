@@ -1,19 +1,26 @@
+## base(original) code from jinnypstar(@박서진, SJ)
+## add arguments: sohds(@오서연, sunbun)
+
+
+# 라이브러리 임포트
 import requests
 from bs4 import BeautifulSoup
 import csv
 import argparse
 
 
+# argument parser 지정
 def get_args_parser():
     parser = argparse.ArgumentParser(
         'get Fragrantica Perfume URL', add_help=False)
-    parser.add_argument('--olfactory', default='chypre', 
-                        choices=['floral', 'amber', 'aromatic', 'woody', 'leather', 'citrus', 'chypre'], type=str)
+    parser.add_argument('--olfactory', '-o', default='chypre', type=str,
+                        choices=['floral', 'amber', 'aromatic', 'woody', 'leather', 'citrus', 'chypre'])
     parser.add_argument('--output_dir', default='dataset/url/', type=str,
                         help='path where to save, empty for no saving')
     return parser
 
 
+# main 함수 지정
 def main(args):
     # 첫 번째 페이지 URL
     url = "https://www.fragrantica.com/groups/" + args.olfactory + ".html"
@@ -51,6 +58,7 @@ def main(args):
     print("URLs have been successfully saved to '" + output + "'.")
     
 
+# START
 if __name__ == '__main__':
     parser = get_args_parser()
     args = parser.parse_args()

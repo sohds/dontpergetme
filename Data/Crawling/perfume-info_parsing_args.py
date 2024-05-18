@@ -1,3 +1,6 @@
+## base(original) code from ksua0923(@김수아)
+## add arguments: sohds(@오서연, sunbun)
+
 # 라이브러리 임포트
 import csv
 from selenium import webdriver
@@ -14,9 +17,9 @@ import pandas as pd
 def get_args_parser():
     parser = argparse.ArgumentParser(
         'get Fragrantica Perfume URL', add_help=False)
-    parser.add_argument('--olfactory', default='chypre', 
-                        choices=['floral', 'amber', 'aromatic', 'woody', 'leather', 'citrus', 'chypre'], type=str)
-    parser.add_argument('--index', type=int, help='csv 속 url 접근하는 index')
+    parser.add_argument('--olfactory', '-o', default='chypre',  type=str,
+                        choices=['floral', 'amber', 'aromatic', 'woody', 'leather', 'citrus', 'chypre'])
+    parser.add_argument('--index', '-i', type=int, help='csv 속 url 접근하는 index')
     return parser
 
 
