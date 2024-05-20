@@ -9,10 +9,11 @@ with open('ChatGPT_api_key.json', 'r', encoding='utf8') as f:
     
 def gpt_prompt_attractions(city):
     openai.api_key = data['API_KEY']
+    index = 1
     query = f"Can you give me a description focused on the characteristics of {city} as a tourist destination?"
     while True:
         try:
-            print(city, 'query status: START')
+            print(f"{index}. {city}'s Attractions Query status: START")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
@@ -36,8 +37,9 @@ def gpt_prompt_attractions(city):
                         ]
                 )
 
-            print(city, "query status: COMPLETE")
+            print(f"{index}. {city}'s Attractions Query status: COMPLETE")
             print()
+            index += 1
             return response.choices[0].message.content
     
         except openai.error.RateLimitError:
