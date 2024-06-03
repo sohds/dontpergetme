@@ -182,3 +182,7 @@ pyrightconfig.json
 
 # ChatGPT API (for destination query making)
 Data/Prompting/ChatGPT_api_key.json
+
+# 확인 차 보는 csv 파일
+Model/recommend_check.csv
+Model/check_keyword.csv
