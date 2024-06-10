@@ -22,7 +22,7 @@ big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변�
 tiny = Image.open(tiny_path)
 
 # OpenAI API 키 로드
-api_key = get_absolute_path('../Data/Prompting/ChatGPT_api_key.json')
+api_key = get_absolute_path('forapp/ChatGPT_api_key.json')
 with open(api_key, 'r', encoding='utf8') as f:
     data = json.load(f)
 
