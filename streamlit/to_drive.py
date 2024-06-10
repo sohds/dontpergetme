@@ -4,6 +4,7 @@ import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+from googleapiclient.errors import HttpError
 
 # # Google Drive API 설정 함수
 # def upload_to_drive(file_name, file_path):
@@ -96,28 +97,34 @@ def process_feedback_local(survey):
     upload_to_drive_local("feedback.json", file_path)
     st.success(":floppy_disk: 소중한 피드백이 전송됐습니다.")
     
-# Google Drive API 설정 함수
+    
 def upload_to_drive(file_name, data):
-    credentials_info = st.secrets["connections"]["gcs"]["web"]
-    credentials = service_account.Credentials.from_service_account_info(credentials_info)
-    service = build('drive', 'v3', credentials=credentials)
+    credentials_info = st.secrets["connections"]["gcs"]
+    try:
+        credentials = service_account.Credentials.from_service_account_info(credentials_info)
+        service = build('drive', 'v3', credentials=credentials)
 
-    # 임시 파일에 데이터를 저장
-    temp_file_path = f"/tmp/{file_name}"
-    with open(temp_file_path, "w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, ensure_ascii=False, indent=4)
+        temp_file_path = f"/tmp/{file_name}"
+        with open(temp_file_path, "w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, ensure_ascii=False, indent=4)
 
-    # 파일 메타데이터 설정
-    folder_id = "19xJsMBeLEZRFMHvFcJyFeMfKKtK6fr6p"  # 구글 드라이브 폴더 ID
-    file_metadata = {'name': file_name, 'parents': [folder_id]}
+        # 파일이 제대로 생성되었는지 확인
+        if not os.path.exists(temp_file_path):
+            st.error(f"Temp file {temp_file_path} does not exist.")
+            return
 
-    # 파일 업로드 준비
-    media = MediaFileUpload(temp_file_path, mimetype='application/json')
+        folder_id = "19xJsMBeLEZRFMHvFcJyFeMfKKtK6fr6p"  # 구글 드라이브 폴더 ID
+        file_metadata = {'name': file_name, 'parents': [folder_id]}
+        media = MediaFileUpload(temp_file_path, mimetype='application/json')
 
-    # 파일 업로드
-    file = service.files().create(body=file_metadata, media_body=media, fields='id, webViewLink').execute()
-    st.write(f"File ID: {file.get('id')}")
-    st.write(f"File webViewLink: {file.get('webViewLink')}")
+        file = service.files().create(body=file_metadata, media_body=media, fields='id, webViewLink').execute()
+        st.write(f"File ID: {file.get('id')}")
+        st.write(f"File webViewLink: {file.get('webViewLink')}")
+    except HttpError as error:
+        st.error(f"An error occurred: {error}")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+
 
 # 피드백 처리 함수
 def process_feedback(survey):
