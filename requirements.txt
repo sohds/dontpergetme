@@ -2,3 +2,10 @@ openai
 numpy
 pandas
 matplotlib
+sklearn
+re
+time
+os
+geopandas
+seaborn
+nltk
