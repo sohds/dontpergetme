@@ -2,7 +2,7 @@ openai
 numpy
 pandas
 matplotlib
-sklearn
+scikit-learn
 re
 time
 os
