@@ -14,8 +14,8 @@ def get_absolute_path(relative_path):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(current_dir, relative_path)
 
-big_path = get_absolute_path('transparent.png')
-tiny_path = get_absolute_path('tiny.png')
+big_path = get_absolute_path('forapp/transparent.png')
+tiny_path = get_absolute_path('forapp/tiny.png')
 
 # 여백을 위한 이미지
 big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변수 저장
@@ -44,8 +44,8 @@ openai.api_key = data['API_KEY']
 
 
 # 데이터 파일 경로 설정
-destination_file_path = get_absolute_path('../Data/Prompting/dataset/destination_mood.csv')
-perfume_file_path = get_absolute_path('../Data/preprocess-data/final_perfume-info.csv')
+destination_file_path = get_absolute_path('forapp/destination_mood.csv')
+perfume_file_path = get_absolute_path('forapp/final_perfume-info.csv')
 
 # 데이터 로드
 destinations = pd.read_csv(destination_file_path)
