@@ -121,9 +121,11 @@ def upload_to_drive(file_name, data):
         st.write(f"File ID: {file.get('id')}")
         st.write(f"File webViewLink: {file.get('webViewLink')}")
     except HttpError as error:
-        st.error(f"An error occurred: {error}")
+        st.error("저장하는데 잠시 오류가 났어요. 나중에 다시 시도해 주세요. :fire:")
+        # st.error(f"An error occurred: {error}")
     except Exception as e:
-        st.error(f"An error occurred: {e}")
+        st.error("나중에 다시 시도해 주세요! :fire:")
+        # st.error(f"An error occurred: {e}")
 
 
 # 피드백 처리 함수
