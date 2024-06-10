@@ -184,6 +184,12 @@ pyrightconfig.json
 Data/Prompting/ChatGPT_api_key.json
 streamlit/forapp/ChatGPT_api_key.json
 
+# Google API
+streamlit/forapp/dontpergetme-f0e0c66d678d.json
+
+# feedback data
+streamlit/data/feedback.json
+
 # 확인 차 보는 csv 파일
 Model/recommend_check.csv
 Model/check_keyword.csv

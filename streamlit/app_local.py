@@ -23,13 +23,13 @@ tiny_path = get_absolute_path('forapp/tiny.png')
 big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변수 저장
 tiny = Image.open(tiny_path)
 
-# # OpenAI API 키 로드
-# api_key = get_absolute_path('forapp/ChatGPT_api_key.json')
-# with open(api_key, 'r', encoding='utf8') as f:
-#     data = json.load(f)
+# OpenAI API 키 로드
+api_key = get_absolute_path('forapp/ChatGPT_api_key.json')
+with open(api_key, 'r', encoding='utf8') as f:
+    data = json.load(f)
 
-# secrets에서 API 키 가져오기
-openai.api_key = st.secrets["openai"]["api_key"]
+# # secrets에서 API 키 가져오기
+# openai.api_key = st.secrets["openai"]["api_key"]
 
 st.title("Don't PERget Me: 여행지 기반 향수 추천 시스템")
 st.write('안녕하세요, 저희는 2024-1 머신러닝기반데이터분석 5조 _돈펄겟미_ 팀 입니다. 기말고사 팀 프로젝트로 "여행지 기반 향수 추천 시스템"을 구현해 보았습니다. 저희의 프로젝트를 웹으로 체험해 보고 가세요!')
@@ -127,11 +127,12 @@ if col2.button("향수 추천받기"):
 
 st.image(big)
 st.markdown('---')
+
 st.markdown('#### About Project & Feedback')
 survey = ss.StreamlitSurvey()
 with st.expander('프로젝트에 대한 피드백을 남겨주세요. :memo:'):
     survey = ss.StreamlitSurvey("프로젝트 피드백")
-    pages = survey.pages(2, on_submit=lambda: process_feedback(survey))
+    pages = survey.pages(2, on_submit=lambda: process_feedback_local(survey))
     
     with pages:
         if pages.current == 0:
@@ -151,7 +152,7 @@ with st.expander('프로젝트에 대한 피드백을 남겨주세요. :memo:'):
             st.write("\n - 없을 시, 온점 하나만 찍고 제출하셔도 됩니다. :wink:")
             survey.text_input("Encouragement: ", id="Q3")
     
-
+    
 st.warning('**Project Information**'
         '\n - 저희 프로젝트를 관심있게 지켜봐주셔서 감사합니다. :seedling:'
         '\n - Project Contributors: 김수아, 박서진, 오서연'
