@@ -1,5 +1,5 @@
 # dontpergetme
-##서울여자대학교 데이터사이언스학과 머신러닝 기말 프로젝트 dontPERgetme
+서울여자대학교 데이터사이언스학과 머신러닝 기말 프로젝트 dontPERgetme
 ![슬라이드1](https://github.com/ksua0923/dontpergetme/assets/150774448/a191b111-a6be-4a30-a53f-d110a48c968f)
 ![슬라이드2](https://github.com/ksua0923/dontpergetme/assets/150774448/18c88351-233c-4532-bcae-780167f54850)
 ![슬라이드3](https://github.com/ksua0923/dontpergetme/assets/150774448/99803b71-56f3-42a9-bfdd-3f92391d0f5c)
