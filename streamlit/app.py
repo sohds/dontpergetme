@@ -5,15 +5,25 @@ import json
 from PIL import Image
 import time
 from recommend import *
+import os
 
 # st.set_page_config(page_title="Don't PERget Me", layout="wide")
 
+# streamlit 웹 배포를 위한 절대경로 포함
+def get_absolute_path(relative_path):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, relative_path)
+
+big_path = get_absolute_path('transparent.png')
+tiny_path = get_absolute_path('tiny.png')
+
 # 여백을 위한 이미지
-big = Image.open('transparent.png')   # 경로에 있는 이미지 파일을 통해 변수 저장
-tiny = Image.open('tiny.png')
+big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변수 저장
+tiny = Image.open(tiny_path)
 
 # OpenAI API 키 로드
-with open('../Data/Prompting/ChatGPT_api_key.json', 'r', encoding='utf8') as f:
+api_key = get_absolute_path('../Data/Prompting/ChatGPT_api_key.json')
+with open(api_key, 'r', encoding='utf8') as f:
     data = json.load(f)
 
 st.title("Don't PERget Me: 여행지 기반 향수 추천 시스템")
@@ -34,8 +44,8 @@ openai.api_key = data['API_KEY']
 
 
 # 데이터 파일 경로 설정
-destination_file_path = '../Data/Prompting/dataset/destination_mood.csv'
-perfume_file_path = '../Data/preprocess-data/final_perfume-info.csv'
+destination_file_path = get_absolute_path('../Data/Prompting/dataset/destination_mood.csv')
+perfume_file_path = get_absolute_path('../Data/preprocess-data/final_perfume-info.csv')
 
 # 데이터 로드
 destinations = pd.read_csv(destination_file_path)
