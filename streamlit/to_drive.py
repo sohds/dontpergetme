@@ -98,7 +98,7 @@ def process_feedback_local(survey):
     
 # Google Drive API 설정 함수
 def upload_to_drive(file_name, data):
-    credentials_info = st.secrets["connections"]["gcs"]
+    credentials_info = st.secrets["connections"]["gcs"]["web"]
     credentials = service_account.Credentials.from_service_account_info(credentials_info)
     service = build('drive', 'v3', credentials=credentials)
 
