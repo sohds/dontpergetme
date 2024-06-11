@@ -18,10 +18,13 @@ def get_absolute_path(relative_path):
 
 big_path = get_absolute_path('forapp/transparent.png')
 tiny_path = get_absolute_path('forapp/tiny.png')
+logo_path = get_absolute_path('forapp/logo.png')
 
 # 여백을 위한 이미지
 big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변수 저장
 tiny = Image.open(tiny_path)
+logo = Image.open(logo_path)
+
 
 # OpenAI API 키 로드
 api_key = get_absolute_path('forapp/ChatGPT_api_key.json')
@@ -31,6 +34,7 @@ with open(api_key, 'r', encoding='utf8') as f:
 # # secrets에서 API 키 가져오기
 # openai.api_key = st.secrets["openai"]["api_key"]
 
+st.image(logo)
 st.title("Don't PERget Me: 여행지 기반 향수 추천 시스템")
 st.write('안녕하세요, 저희는 2024-1 머신러닝기반데이터분석 5조 _돈펄겟미_ 팀 입니다. 기말고사 팀 프로젝트로 "여행지 기반 향수 추천 시스템"을 구현해 보았습니다. 저희의 프로젝트를 웹으로 체험해 보고 가세요!')
 st.info('**<Demo Page 사용설명서>**'
