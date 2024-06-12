@@ -25,11 +25,6 @@ big = Image.open(big_path)   # 경로에 있는 이미지 파일을 통해 변�
 tiny = Image.open(tiny_path)
 logo = Image.open(logo_path)
 
-# # OpenAI API 키 로드
-# api_key = get_absolute_path('forapp/ChatGPT_api_key.json')
-# with open(api_key, 'r', encoding='utf8') as f:
-#     data = json.load(f)
-
 # secrets에서 API 키 가져오기
 openai.api_key = st.secrets["openai"]["api_key"]
 
@@ -62,7 +57,7 @@ st.subheader('체험을 위한 Input 정보 넣기')
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    gender_option = st.radio("향수가 어울릴만한 원하는 성별을 선택하세요.", ('unisex', 'women', 'men'))
+    gender_option = st.radio("향수가 어울릴 만한 원하는 성별을 선택하세요.", ('unisex', 'women', 'men'))
 
 with col2:
     countries = sorted(destinations['nation'].unique().tolist())
@@ -97,12 +92,16 @@ if col2.button("향수 추천받기"):
             moods = destinations[destinations['city'] == selected_city]['moods'].values[0]
         else:
             description = gpt_prompt_attractions(selected_city)
-            moods = []  # 새로 생성된 도시 설명에는 분위기 키워드가 없음
+            # 새로 생성된 도시 설명에서 분위기 키워드 추출
+            new_destination = pd.DataFrame({'city': [selected_city], 'description': [description]})
+            new_destinations = pd.concat([destinations, new_destination], ignore_index=True)
+            _, _, new_destinations = extract_destination_moods(new_destinations, n_topics=18)
+            moods = new_destinations[new_destinations['city'] == selected_city]['moods'].values[0]
 
         with st.container():
             with st.spinner('향수를 추천하고 있어요...'):
                 time.sleep(2)
-                recommended_perfumes = recommend_perfumes_for_destination(description, tfidf_vectorizer, perfume_tfidf_matrix, perfumes, top_n=5)
+                recommended_perfumes = recommend_perfumes_for_destination(description, moods, tfidf_vectorizer, perfume_tfidf_matrix, perfumes, top_n=5)
 
         st.markdown('---')        
         st.success(f':trophy:  **{selected_city}**의 향수 추천이 성공적으로 이루어 졌어요!'
