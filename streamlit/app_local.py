@@ -77,12 +77,14 @@ with col3:
         selected_city = st.text_input("여행지 도시명을 영어로 입력하세요. (Must be English):")
     
     st.write("가고 싶은 여행지 도시명이 없다면, 'Other (Specify)를 눌러 직접 영어로 입력해 주세요.")
-
+    
 # 선택된 성별에 따라 향수 데이터 필터링
 if gender_option == 'women':
-    perfumes = perfumes[perfumes['for_gender'].str.contains('for women|unisex', na=False)]
+    perfumes = perfumes[perfumes['for_gender'].str.contains('for women|for women and men', na=False)]
 elif gender_option == 'men':
-    perfumes = perfumes[perfumes['for_gender'].str.contains('for men|unisex', na=False)]
+    perfumes = perfumes[perfumes['for_gender'].str.contains('for men|for women and men', na=False)]
+elif gender_option == 'unisex':
+    perfumes = perfumes[perfumes['for_gender'].str.contains('for women and men', na=False)]
 
 # 여행지 분위기 추출
 tfidf_vectorizer, destination_tfidf_matrix, destinations = extract_destination_moods(destinations, n_topics=18)
