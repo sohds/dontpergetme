@@ -52,35 +52,14 @@ def gpt_prompt_attractions(city):
                 )
             return response.choices[0].message['content']
         
-        except openai.error.RateLimitError:
-            st.warning("Rate limit exceeded, waiting to retry...")
-            time.sleep(5)
-            
-        except openai.error.APIError as e:
-            st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
-            st.write(f"OpenAI API returned an API Error: {e}")
-            break
-        
-        except openai.error.Timeout as e:
-            st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
-            st.write(f"OpenAI API request timed out: {e}")
-            break
-        
-        except openai.error.APIConnectionError as e:
-            st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
-            st.write(f"OpenAI API connection error: {e}")    
-            break
-        
-        except openai.error.InvalidRequestError as e:
-            st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
-            st.write(f"OpenAI API invalid request: {e}")
-            break
         
         except Exception as e:
             st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
-            st.write(f"An unexpected error occurred: {e}")
-            break
-
+            if 'rate limit' in str(e).lower():
+                st.write("API rate limit exceeded. Please try again later.")
+            else:
+                st.write(f"An error occurred: {str(e)}")
+        
 # 여행지 분위기 추출 함수 (여러 주제)
 def extract_destination_moods(destinations, n_topics=18):
     tfidf_vectorizer = TfidfVectorizer()
