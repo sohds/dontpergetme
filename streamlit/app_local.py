@@ -62,16 +62,21 @@ st.subheader('체험을 위한 Input 정보 넣기')
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    gender_option = st.radio("성별을 선택하세요.", ('unisex', 'women', 'men'))
+    gender_option = st.radio("향수가 어울릴만한 원하는 성별을 선택하세요.", ('unisex', 'women', 'men'))
 
 with col2:
     countries = sorted(destinations['nation'].unique().tolist())
-    selected_country = st.selectbox("여행지의 국가를 선택하세요.", countries)
+    selected_country = st.selectbox("가고 싶은 여행지의 국가를 선택하세요.", countries)
 
 with col3:
     cities = sorted(destinations[destinations['nation'] == selected_country]['city'].tolist())
     cities.append("Other (Specify)")
-    selected_city = st.selectbox("여행지 도시명을 선택하세요.", cities)
+    selected_city = st.selectbox("가고 싶은 여행지 도시명을 선택하세요.", cities)
+    
+    if selected_city == "Other (Specify)":
+        selected_city = st.text_input("여행지 도시명을 영어로 입력하세요. (Must be English):")
+    
+    st.write("가고 싶은 여행지 도시명이 없다면, 'Other (Specify)를 눌러 직접 영어로 입력해 주세요.")
 
 # 선택된 성별에 따라 향수 데이터 필터링
 if gender_option == 'women':
@@ -162,4 +167,5 @@ st.warning('**Project Information**'
         '\n - Project Contributors: 김수아, 박서진, 오서연'
         '\n     - 배포 by. 오서연'
         '\n - 프로젝트 관련 질문이나 제안사항은 이메일 sohtks@swu.ac.kr로 받습니다.'
+        '\n - 상단에 연결된 깃허브로도 프로젝트를 확인해보실 수 있습니다.'
         )
