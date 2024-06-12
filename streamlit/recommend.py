@@ -57,8 +57,10 @@ def gpt_prompt_attractions(city):
             st.error(':loudspeaker: 현재는 새롭게 도시명을 넣을 수 없습니다. 기존에 있는 도시명을 선택해 진행해 주세요.')
             if 'rate limit' in str(e).lower():
                 st.write("API rate limit exceeded. Please try again later.")
+                break
             else:
                 st.write(f"An error occurred: {str(e)}")
+                break
         
 # 여행지 분위기 추출 함수 (여러 주제)
 def extract_destination_moods(destinations, n_topics=18):
