@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from sklearn import linear_kernel
+from sklearn.metrics import linear_kernel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
 from sklearn.metrics.pairwise import cosine_similarity
