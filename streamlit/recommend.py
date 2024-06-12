@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from sklearn import linear_kernel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
 from sklearn.metrics.pairwise import cosine_similarity
@@ -95,10 +96,13 @@ def load_perfume_data(perfume_file_path):
     return perfumes
 
 # 추천 시스템
-def recommend_perfumes_for_destination(description, tfidf_vectorizer, perfume_tfidf_matrix, perfumes, top_n=5):
-    description_vector = tfidf_vectorizer.transform([description])
-    cosine_sim = cosine_similarity(description_vector, perfume_tfidf_matrix).flatten()
-    top_perfume_indices = cosine_sim.argsort()[-top_n:][::-1]  # 상위 n개 향수 추천
-    recommended_perfumes = perfumes.iloc[top_perfume_indices]
+def recommend_perfumes_for_destination(description, moods, tfidf_vectorizer, perfume_tfidf_matrix, perfumes, top_n=5):
+    combined_description = description + " " + " ".join(moods)
+    description_tfidf = tfidf_vectorizer.transform([combined_description])
     
-    return recommended_perfumes
+    cosine_similarities = linear_kernel(description_tfidf, perfume_tfidf_matrix).flatten()
+    
+    # Get the top_n most similar perfumes
+    top_indices = cosine_similarities.argsort()[-top_n:][::-1]
+    
+    return perfumes.iloc[top_indices]
