@@ -1,9 +1,9 @@
 # dontpergetme
-
 ---
-
 2024-1 서울여자대학교 데이터사이언스학과 머신러닝기반데이터분석 기말고사 프로젝트 5조: dontPERgetme
-
+<div align="center">
+<br>
+  <br>
 <table>
   <tr>
     <td align="center">
@@ -41,7 +41,8 @@
     </td>
   </tr>
 </table>
-
+</div>
+<br>
 - 프로젝트에 대해 궁금한 사항이 있으신 경우, 팀원의 이메일이나 <a href="https://open.kakao.com/o/sxM1nOwg" >카카오톡 오픈 채팅방</a>을 이용해 주세요.
 
 <br>
@@ -52,7 +53,6 @@
 ## 프로젝트 주제 소개
 
 ### 문제 정의
-
 ***“특별한 여행의 추억을 향기로 간직할 수 있는 시스템의 부재”***
 
 - 이러한 **개인화된 후각 경험**을 제공하는 추천 시스템이 없기 때문에, 여행자들은 여행지와의 지속적인 감정적 연결이 어려움
@@ -89,10 +89,10 @@
         1. 키워드와 도시가 잘 어울리는지 평가 (팀원 평가)
         2. 임의로 향수 선정해 그 향수가 대표하는 키워드가 무엇일지 확인
             - 향수가 포함되어있는 행을 찾고, 그 행에서 키워드를 뽑아 키워드가 몇 번 나왔는지 counts해서 평가하는 방식
-
-<CENTER><img src="./readme_photos/ppt/슬라이드26.PNG" width="600px;"></CENTER>
-<CENTER><img src="./readme_photos/ppt/슬라이드28.PNG" width="600px;"></CENTER>
-
+<div align="center">
+<img src="./readme_photos/ppt/슬라이드26.PNG" width="600px;">
+<img src="./readme_photos/ppt/슬라이드28.PNG" width="600px;">
+</div>
 
 <br>
 <br>
