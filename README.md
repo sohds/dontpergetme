@@ -37,7 +37,7 @@
         <br>
         <sub>서울여대 데이터사이언스학과 3학년</sub>
         <br>
-        <sub>이메일</sub>
+        <sub>ksua0923@swu.ac.kr</sub>
     </td>
   </tr>
 </table>
