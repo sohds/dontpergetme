@@ -1,9 +1,8 @@
 # dontpergetme
----
-2024-1 서울여자대학교 데이터사이언스학과 머신러닝기반데이터분석 기말고사 프로젝트 5조: dontPERgetme
+2024-1 서울여자대학교 데이터사이언스학과 전공선택 과목 '머신러닝기반데이터분석' 기말고사 프로젝트 5조: dontPERgetme
+### Member
 <div align="center">
 <br>
-  <br>
 <table>
   <tr>
     <td align="center">
@@ -43,7 +42,11 @@
 </table>
 </div>
 <br>
+<br>
 - 프로젝트에 대해 궁금한 사항이 있으신 경우, 팀원의 이메일이나 <a href="https://open.kakao.com/o/sxM1nOwg" >카카오톡 오픈 채팅방</a>을 이용해 주세요.
+
+
+*****
 
 <br>
 <br>
@@ -53,19 +56,24 @@
 ## 프로젝트 주제 소개
 
 ### 문제 정의
-***“특별한 여행의 추억을 향기로 간직할 수 있는 시스템의 부재”***
+
+<div align='center'>
+<b>“특별한 여행의 추억을 향기로 간직할 수 있는 시스템의 부재"</b>
+</div>
+
+<br>
 
 - 이러한 **개인화된 후각 경험**을 제공하는 추천 시스템이 없기 때문에, 여행자들은 여행지와의 지속적인 감정적 연결이 어려움
 - 따라서, 여행지의 고유한 향기를 통해 여행의 추억을 강화하고, 감정적으로 몰입할 수 있는 **새로운 패러다임의 향수 추천 시스템**을 개발하고자 함
 
 ### 목표
 
-- 심리적인 효과(프루스트 효과)를 기반으로 새로운 향수 추천 패러다임 제시
+- 심리적인 효과 (프루스트 효과) 를 기반으로 새로운 향수 추천 패러다임 제시
 
 ### y=f(x)
 
-- y: top-K recommended perfumes
-- f: our model - **DPGM**(Don’t PerGet Me: NMF + Cosine Similarity)
+- y: top-5 recommended perfumes
+- f: our model - **DPGM** (Don’t PerGet Me: NMF + Cosine Similarity)
 - x: perfume notes, city mood keyword, city name
 
 ### Pipeline
@@ -86,7 +94,7 @@
 
 - **평가 기준**
     - 정량평가 불가능해서 정성평가 실시
-        1. 키워드와 도시가 잘 어울리는지 평가 (팀원 평가)
+        1. 키워드와 도시가 잘 어울리는지 평가 (팀원 상호 평가)
         2. 임의로 향수 선정해 그 향수가 대표하는 키워드가 무엇일지 확인
             - 향수가 포함되어있는 행을 찾고, 그 행에서 키워드를 뽑아 키워드가 몇 번 나왔는지 counts해서 평가하는 방식
 <div align="center">
@@ -176,7 +184,8 @@
 
 ## 향후 연구 방향
 
-- 궁극적으로 대화형 향수 추천 시스템(CRS, *Conversational Recommendation System*)를 할 수 있도록 프로젝트를 설계할 예정
+- 프로젝트를 진행했던 수업이 '_머신러닝 기반_ 데이터 분석'이었기 때문에, 주로 머신러닝만 다루고 있어 원하던 방향성으로 완벽하게 마무리 짓지 못했다는 점에 대한 아쉬움이 남았음.
+- 궁극적으로 **대화형 향수 추천 시스템**(CRS, *Conversational Recommendation System*)를 할 수 있도록 프로젝트를 설계할 예정
     - 직접 LLM의 체크포인트를 불러와서 실험을 진행할 예정 (ChatGPT API가 아닌, Llama 3.1과 같은 오픈소스 LLM Checkpoint 활용 예정)
     - LLM과 RAG를 연결해, LLM의 답변을 통해 여행지 Mood와 비슷한 키워드를 추출
         - RAG로 불러올 DB를 위해 미리 여행지와 관련된 정보들을 크롤링 할 예정
